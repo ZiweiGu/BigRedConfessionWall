@@ -39,7 +39,7 @@
 	
 		<!-- <h5 class='card-title'>{{ post.slug }}</h5> -->
 		<p class='card-text'>
-			<small class="{%if not color%}text-info {%else%}text-info {% endif %}">{{ post.publish_date }}</small>
+			<small class="{text-info">{{ post.publish_date }}</small>
 			{% if truncate %}
 			{{ post.content|linebreaks|truncatewords:15 }}
 
@@ -61,11 +61,16 @@
 			<a href="#" onClick="document.getElementById('dislikebutton').submit()">
 			<img src='{% static "down.png" %}' width="30" height="30" alt="My image">
 			</a> {{post.dislikes}}
+			|
+			<a href='{{ object.get_comment_url }}'>
+			<img src='{% static "comment.png" %}' width="30" height="30" alt="My image">
+			</a>{{ post.approved_comments.count }}
+			
 			<form id="likebutton" method="POST" action="/post/{{post.id}}/preference/1/">
 			{% csrf_token %}
 			<input type="hidden">
 			</form>
-
+			
 
 			<form id="dislikebutton" method="POST" action="/post/{{post.id}}/preference/2/">
 			{% csrf_token %}
@@ -75,7 +80,8 @@
 		{% else %}
 			<img src='{% static "love.png" %}' width="30" height="30" alt="My image"></a>  {{post.likes}}    
 			<img src='{% static "down.png" %}' width="30" height="30" alt="My image"></a> {{post.dislikes}}
-
+			<img src='{% static "comment.png" %}' width="30" height="30" alt="My image"></a> 
+			{{ post.approved_comments.count }}
 		{% endif %}
 
 		{% if not detail %}
@@ -83,7 +89,7 @@
 	    	<div class="view">
 			<a href='{{ post.get_absolute_url }}' class="text-info">View</a>
 			</div>
-			 <a href='{{ object.get_comment_url }}'>Comments: {{ post.approved_comments.count }}
+			<!--  <a href='{{ object.get_comment_url }}'>Comments: {{ post.approved_comments.count }} -->
 
 		{% endif %}
 
