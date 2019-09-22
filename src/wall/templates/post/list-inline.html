@@ -9,7 +9,9 @@
 
 <!-- <div class='card {% if not post.publish_date %} bg-warning text-dark {% endif %}'>
 <div class='card {% if not post.publish_date %} border border-warning text-dark {% endif %}'> -->
+
 	<div class="shadow-lg p-3 mb-5">
+{%if not big%}
 	{%ifequal color 1 %}
 	<img src='{% static "firework.gif" %}' class="card-img" alt="...">
 	{% endifequal%}
@@ -29,9 +31,11 @@
 	<img src='{% static "heart.gif" %}' class="card-img" alt="...">
 	{% endifequal%}
 
+
 	<div class="card-img-overlay">
-	<!-- <img src="/Users/xiaolu/Desktop/confession-wall/src/assets/cornell.png" class="card-img-top" alt="Responsive image"> -->
-	<div class='card-body h-200'>
+{%endif%}
+
+	<div class='card-body'>
 	
 		<!-- <h5 class='card-title'>{{ post.slug }}</h5> -->
 		<p class='card-text'>
@@ -77,9 +81,8 @@
 		{% if not detail %}
 	    	{% if not post.publish_date %} Draft {% endif %}
 	    	<div class="view">
-			<a href='{{ post.get_absolute_url }}' class="{%if not color%}text-info {%else%}text-info {% endif %}">View</a>
+			<a href='{{ post.get_absolute_url }}' class="text-info">View</a>
 			</div>
-			 {{post.likes}}   |   {{post.dislikes}}
 			 <a href='{{ object.get_comment_url }}'>Comments: {{ post.approved_comments.count }}
 
 		{% endif %}
