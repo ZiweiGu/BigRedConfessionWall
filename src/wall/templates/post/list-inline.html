@@ -79,6 +79,8 @@
 	    	<div class="view">
 			<a href='{{ post.get_absolute_url }}' class="{%if not color%}text-info {%else%}text-info {% endif %}">View</a>
 			</div>
+			 {{post.likes}}   |   {{post.dislikes}}
+			 <a href='{{ object.get_comment_url }}'>Comments: {{ post.approved_comments.count }}
 
 		{% endif %}
 

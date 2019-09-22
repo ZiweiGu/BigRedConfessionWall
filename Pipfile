@@ -8,9 +8,13 @@ verify_ssl = true
 [packages]
 django = "==2.2.4"
 pillow = "*"
+<<<<<<< HEAD
 diango-widge-tweaks-1-4-5 = "*"
 diango-widge-tweaks = "*"
 diango-widget-tweaks = "*"
+=======
+django-widget-tweaks = "*"
+>>>>>>> 7c62bbca597fc5ec673b3b9d12e8e8855869c993
 
 [requires]
 python_version = "3.6"
