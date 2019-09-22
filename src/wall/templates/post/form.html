@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+
+{% if title %}
+	<h1>{{ title }}</h1>
+{% endif %}
+
+
+
+
+
+
+
+
+<form method="POST" action="."> {% csrf_token %}
+	{{form}}
+	<div class="form-group">
+    <label for="exampleFormControlTextarea1"></label>
+        <textarea class="form-control form-control-lg" placeholder="Write my own confession post!" id="exampleFormControlTextarea1" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-info">Submit</button>
+
+<!-- 	<button type='submit'>Send</button>  -->
+
+</form>
+
+{% endblock %}
