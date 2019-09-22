@@ -28,6 +28,26 @@
   </a>
 </div>
 
+<hr>
+<a class="btn btn-default" href='{{ object.get_comment_url }}'>Add comment</a>
+
+{% for comment in post.comments.all %}
+    {% if user.is_authenticated or comment.approved %}
+    <div style="margin: 20px 0px 20px 20px">
+        <div class="date">
+            {{ comment.date }}
+            {% if not comment.approved %}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
+                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
+            {% endif %}
+        </div>
+        <p>{{ comment.text|linebreaks }}</p>
+    </div>
+    {% endif %}
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
+
 
 {% if request.user.is_authenticated %}
 

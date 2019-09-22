@@ -16,9 +16,6 @@ Including another URLconf
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-from wall.views import (
-    post_create_view
-    )
 from searches.views import search_view
 from .views import home_page, login_page, contact_page
 
@@ -26,7 +23,6 @@ from .views import home_page, login_page, contact_page
 urlpatterns = [
     path('', home_page),
     path('login/', login_page),
-    path('post-new/', post_create_view),
     path('post/', include('wall.urls')),
     path('search/', search_view),
     path('admin/', admin.site.urls),

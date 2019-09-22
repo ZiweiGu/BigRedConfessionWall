@@ -1,4 +1,26 @@
 {% include 'base.html' with detail=False %}
+    <div class="form-group">
+    <form method="POST" action=".">{% csrf_token %}
+
+<!--             <label for="{{ form.content.id_for_label }}"></label> -->
+    {{ form.content }}
+<!--             <textarea class="form-control form-control-lg" placeholder="Write my own confession post!" id="exampleFormControlTextarea1" rows="3"></textarea> -->
+    <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+    </div>
+
+<!-- <form method="POST" action="."> {% csrf_token %}
+
+	{{ form.as_p }}
+	<button type='submit'>Send</button> 
+
+</form> -->
+
+<!-- <div class="fieldWrapper">
+    {{ form.subject.errors }}
+    <label for="{{ form.subject.id_for_label }}">Email subject:</label>
+    {{ form.subject }}
+</div> -->
 
 {% block content %}
 <div class='row'>

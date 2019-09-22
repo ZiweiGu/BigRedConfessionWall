@@ -50,6 +50,7 @@
 
 		{% else %}
 			 {{post.likes}}   |   {{post.dislikes}}
+			 <a href='{{ object.get_comment_url }}'>Comments: {{ post.approved_comments.count }}
 
 		{% endif %}
 
