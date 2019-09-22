@@ -9,6 +9,9 @@ verify_ssl = true
 django = "==2.2.4"
 pillow = "*"
 django-widget-tweaks = "*"
+gunicorn = "*"
+django-heroku = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.6"
