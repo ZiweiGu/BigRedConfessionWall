@@ -1,23 +1,41 @@
 <!-- <li><a href='{{ post.get_absolute_url }}'>{{ post.content }}</a></li>
  -->
+  {% load static %}
 
-<div class='col-12 {%if big%}col-md-8 {%else%}col-md-4 {% endif %} mb-4 mx-auto'>
 
-<div class='card border-0 text-center {% if not post.publish_date %} bg-dark text-dark {% endif %}'>
+
+<div class='col-12 {%if big%}col-md-8 {%else%}col-md-3{% endif %} mb-4 mx-auto'>
+<div class='card border-0 text-center {% if not post.publish_date %} bg-dark text-light {% endif %}'>
 
 <!-- <div class='card {% if not post.publish_date %} bg-warning text-dark {% endif %}'>
 <div class='card {% if not post.publish_date %} border border-warning text-dark {% endif %}'> -->
-	{% if color %}
-	<div class="shadow-lg p-3 mb-5 bg-info text-light">
-	{% else %}
-	<div class="shadow-lg p-3 mb-5 bg-light ">
-	{% endif%}
-	<!-- <img src="/Users/xiaolu/Desktop/confession-wall/src/assets/cornell.png" class="card-img-top" alt="Responsive image"> -->
-	<div class='card-body'>
+	<div class="shadow-lg p-3 mb-5">
+	{%ifequal color 1 %}
+	<img src='{% static "firework.gif" %}' class="card-img" alt="...">
+	{% endifequal%}
+	{%ifequal color 2 %}
+	<img src='{% static "sparkle.png" %}' class="card-img" alt="...">
+	{% endifequal%}
+	{%ifequal color 3 %}
+	<img src='{% static "cat.gif" %}' class="card-img" alt="...">
+	{% endifequal%}
+
+	{%ifequal color 4 %}
+	<img src='{% static "flower.gif" %}' class="card-img" alt="...">
+	{% endifequal%}
+
+	{%ifequal color 5 %}
 	
-		<h5 class='card-title'>{{ post.slug }}</h5>
+	<img src='{% static "heart.gif" %}' class="card-img" alt="...">
+	{% endifequal%}
+
+	<div class="card-img-overlay">
+	<!-- <img src="/Users/xiaolu/Desktop/confession-wall/src/assets/cornell.png" class="card-img-top" alt="Responsive image"> -->
+	<div class='card-body h-200'>
+	
+		<!-- <h5 class='card-title'>{{ post.slug }}</h5> -->
 		<p class='card-text'>
-			<small class="{%if not color%}text-info {%else%}text-dark {% endif %}">{{ post.publish_date }}</small>
+			<small class="{%if not color%}text-info {%else%}text-info {% endif %}">{{ post.publish_date }}</small>
 			{% if truncate %}
 			{{ post.content|linebreaks|truncatewords:15 }}
 
@@ -27,21 +45,23 @@
 
 	    </p>
 
-	    {% if not detail %}
-	    	{% if not post.publish_date %} Draft {% endif %}
-
-				<a href='{{ post.get_absolute_url }}' class="{%if not color%}text-info {%else%}text-dark {% endif %}">View</a>
-
-		{% endif %}
+	    
 
 		
 
 		{% if detail %}
-			<a href="#" onClick="document.getElementById('likebutton').submit()">Like This Post</a> {{post.likes}}   |   <a href="#" onClick="document.getElementById('dislikebutton').submit()">Dislike This Post</a> {{post.dislikes}}
+			<a href="#" onClick="document.getElementById('likebutton').submit()">
+			<img src='{% static "love.png" %}' width="30" height="30" alt="My image">
+			</a> {{post.likes}}   
+			|   
+			<a href="#" onClick="document.getElementById('dislikebutton').submit()">
+			<img src='{% static "down.png" %}' width="30" height="30" alt="My image">
+			</a> {{post.dislikes}}
 			<form id="likebutton" method="POST" action="/post/{{post.id}}/preference/1/">
 			{% csrf_token %}
 			<input type="hidden">
 			</form>
+
 
 			<form id="dislikebutton" method="POST" action="/post/{{post.id}}/preference/2/">
 			{% csrf_token %}
@@ -49,7 +69,16 @@
 			</form>
 
 		{% else %}
-			 {{post.likes}}   |   {{post.dislikes}}
+			<img src='{% static "love.png" %}' width="30" height="30" alt="My image"></a>  {{post.likes}}    
+			<img src='{% static "down.png" %}' width="30" height="30" alt="My image"></a> {{post.dislikes}}
+
+		{% endif %}
+
+		{% if not detail %}
+	    	{% if not post.publish_date %} Draft {% endif %}
+	    	<div class="view">
+			<a href='{{ post.get_absolute_url }}' class="{%if not color%}text-info {%else%}text-info {% endif %}">View</a>
+			</div>
 
 		{% endif %}
 
@@ -57,6 +86,7 @@
 
 
 	</div>
-	</div>
+</div>
+</div>
 </div>
 </div>

@@ -14,11 +14,25 @@
 
 
 <form method="POST" action="."> {% csrf_token %}
-	{{form}}
-	<div class="form-group">
+	{% for hidden in form.hidden_fields %}
+  {{ hidden }}
+{% endfor %}
+
+{% for field in form.visible_fields %}
+  <div class="form-group">
+    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+    <label for="exampleFormControlTextarea1">{{ field.content }}</label>
+    {{ field }}
+    {% for error in field.errors %}
+      <span class="help-block">{{ error }}</span>
+    {% endfor %}
+  </div>
+{% endfor %}
+
+<!-- 	<div class="form-group">
     <label for="exampleFormControlTextarea1"></label>
         <textarea class="form-control form-control-lg" placeholder="Write my own confession post!" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
+    </div> -->
     <button type="submit" class="btn btn-info">Submit</button>
 
 <!-- 	<button type='submit'>Send</button>  -->
